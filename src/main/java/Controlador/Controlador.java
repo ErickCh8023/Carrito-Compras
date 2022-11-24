@@ -41,10 +41,18 @@ public class Controlador extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
 		switch (accion) {
-		case "Principal": {
-			request.getRequestDispatcher("Principal.jsp").forward(request, response);;
+		case "Principal": 
+			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			break;
-		}
+		case "Producto":
+			request.getRequestDispatcher("Producto.jsp").forward(request, response);
+			break;
+		case "Cliente":
+			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+			break;
+		case "NuevaVenta":
+			request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + accion);
 		}

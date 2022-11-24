@@ -48,6 +48,7 @@ public class Validar extends HttpServlet {
 			em = edao.validar(user, pass);
 			
 			if(em.getUser() != null) { //Usuario existe
+				request.setAttribute("usuario", em);
 				request.getRequestDispatcher("Controlador?accion=Principal").forward(request, response); //Redirecciona al controlador
 			}else {
 				request.getRequestDispatcher("index.jsp").forward(request, response); //Refirege
