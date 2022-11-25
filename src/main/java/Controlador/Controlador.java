@@ -43,6 +43,7 @@ public class Controlador extends HttpServlet {
 		switch (accion) {
 		case "Principal": 
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
+			System.out.println("Entro a Principal.jsp");
 			break;
 		case "Producto":
 			request.getRequestDispatcher("Producto.jsp").forward(request, response);
