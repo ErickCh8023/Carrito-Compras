@@ -11,7 +11,6 @@
 		margin-left: 10px;
 	}
 	div iframe{
-		border: solid;
 		height: 100%;
 		width: 100%;
 	}
