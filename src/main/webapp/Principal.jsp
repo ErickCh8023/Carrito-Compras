@@ -10,11 +10,6 @@
 	ul li{
 		margin-left: 10px;
 	}
-	div iframe{
-		border: solid;
-		height: 100%;
-		width: 100%;
-	}
 	</style>
 </head>
 <body>
@@ -26,16 +21,16 @@
 		          <a style="margin-left: 10px" class="btn btn-outline-dark" href="#">Home</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?accion=Producto" target="myFrame">Producto</a> <%-- Target hace referencia al iframe --%>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=Producto" target="myFrame">Producto</a> <%-- Target hace referencia al iframe --%>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?accion=Empleado" target="myFrame">Empleado</a>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=Empleado&accion=Listar" target="myFrame">Empleado</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?accion=Cliente" target="myFrame">Clientes</a>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=Cliente" target="myFrame">Clientes</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?accion=NuevaVenta" target="myFrame">Nueva Venta</a>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=NuevaVenta" target="myFrame">Nueva Venta</a>
 		         </li>
 		      </ul>
 						<div class="dropdown">
@@ -55,7 +50,7 @@
 		  </div>
 	</nav>
 	<div class="m-4" style="height: 550px">
-		<iframe name="myFrame" style="height: 100%; width: 100%"></iframe>
+		<iframe name="myFrame" style="height: 100%; width: 100%; border: none "></iframe>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>

@@ -1,11 +1,16 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Modelo.Empleado;
+import Modelo.EmpleadoDAO;
 
 /**
  * Servlet implementation class Controlador
@@ -13,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Controlador")
 public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Empleado em = new Empleado();
+	EmpleadoDAO edao = new EmpleadoDAO(); 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,30 +48,46 @@ public class Controlador extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
-		System.out.println(accion);
-		switch (accion) {
-		case "Principal": 
+		String menu = request.getParameter("menu");
+		
+		if(menu.equals("Principal")) {
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
-			System.out.println("Entro a Principal.jsp");
-			break;
-		case "Producto":
-			request.getRequestDispatcher("Producto.jsp").forward(request, response);
-			System.out.println("Entro a Producto.jsp");
-			break;
-		case "Empleado":
-			request.getRequestDispatcher("Empleado.jsp").forward(request, response);
-			break;
-		case "Cliente":
-			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-			System.out.println("Entro a Cliente.jsp");
-			break;
-		case "NuevaVenta":
-			request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
-			System.out.println("Entro a NuevaVenta.jsp");
-			break;
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + accion);
 		}
+		
+		if(menu.equals("Producto")) {
+			request.getRequestDispatcher("Producto.jsp").forward(request, response);
+		}
+		
+		if(menu.equals("Empleado")) {
+			request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+			switch (accion) {
+			case "Listar":
+				List lista = edao.listar();
+				request.setAttribute("em", lista);
+				break;
+				
+			case "Agregar":
+				break;
+				
+			case "Editar":
+				break;
+			
+			case "Delete":
+				break;
+			
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + accion);
+			}
+		}
+		
+		if(menu.equals("Cliente")) {
+			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+		}
+		
+		if(menu.equals("NuevaVenta")) {
+			request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+		}
+		
 	}
 
 }
