@@ -51,6 +51,9 @@ public class Controlador extends HttpServlet {
 			request.getRequestDispatcher("Producto.jsp").forward(request, response);
 			System.out.println("Entro a Producto.jsp");
 			break;
+		case "Empleado":
+			request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+			break;
 		case "Cliente":
 			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 			System.out.println("Entro a Cliente.jsp");
