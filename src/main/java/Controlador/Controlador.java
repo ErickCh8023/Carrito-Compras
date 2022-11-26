@@ -62,6 +62,10 @@ public class Controlador extends HttpServlet {
 			request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
 			System.out.println("Entro a NuevaVenta.jsp");
 			break;
+		case "Salir":
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			System.out.println("Entro a index.jsp");
+			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + accion);
 		}

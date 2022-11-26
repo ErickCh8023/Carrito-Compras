@@ -26,7 +26,7 @@
 		          <a style="margin-left: 10px" class="btn btn-outline-dark" href="#">Home</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?accion=Producto" target="myFrame">Producto</a> <%-- Target hace referencia al iframe --%>
+		          <a class="btn btn-outline-dark" href="Controlador?accion=Producto" target="myFrame">Producto</a>
 		         </li>
 		         <li class="nav-item">
 		          <a class="btn btn-outline-dark" href="Controlador?accion=Empleado" target="myFrame">Empleado</a>
@@ -46,9 +46,7 @@
 						    <a class="dropdown-item" href="#"> <img  src="img/user.png" alt="50px" width="50px"></a>
 						    <li><a class="dropdown-item" href="#">${usuario.getUser()}</a></li>
 						    <li><a class="dropdown-item" href="#">usuario@gmail.com</a></li>
-							<form action="validar" method="POST">
-									<button  name="accion" value="Salir" class="dropdown-item" href="#">Salir</button>
-							</form>
+							<a class="dropdown-item" href="Controlador?accion=Salir">Salir</a>
 						  </ul>
 						</div>					
 		    </div>
