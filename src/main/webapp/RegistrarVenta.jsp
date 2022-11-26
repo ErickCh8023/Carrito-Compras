@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,10 +72,11 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
-                <label>xd</label>
-                <div class="col-sm-6">
+                <div class="d-flex col-sm-5 ml-auto">
+                	<label>Numero Serie: </label>
                     <input type="text" name="NroSerie" class="from-control">
                 </div>
+                <br>
                 <table class="table table-hover">
                     <tr>
                         <th>Nro</th>
@@ -95,6 +97,10 @@
                         <td></td>
                     </tr>
                 </table>
+            </div>
+            <div class="card-footer">
+            	<input type="text" name="accion" value="Generar Venta" class="btn btn-outline-success">
+            	<input type="text" name="accion" value="Cancelar" class="btn btn-danger">
             </div>
           </div>
         </div>
