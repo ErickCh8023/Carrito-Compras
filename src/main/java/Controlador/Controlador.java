@@ -27,7 +27,8 @@ public class Controlador extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -48,12 +49,15 @@ public class Controlador extends HttpServlet {
 			break;
 		case "Producto":
 			request.getRequestDispatcher("Producto.jsp").forward(request, response);
+			System.out.println("Entro a Producto.jsp");
 			break;
 		case "Cliente":
 			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+			System.out.println("Entro a Cliente.jsp");
 			break;
 		case "NuevaVenta":
 			request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+			System.out.println("Entro a NuevaVenta.jsp");
 			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + accion);

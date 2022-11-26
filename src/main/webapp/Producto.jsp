@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>HelloWord</h1>
+	<h1>HelloWord Soy Producto</h1>
 </body>
 </html>
