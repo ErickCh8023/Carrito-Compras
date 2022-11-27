@@ -1,8 +1,8 @@
 package Modelo;
 
 public class Empleado {
-	int id;
-	String dni, nom, tel, estado, user;
+	private int id;
+	private String dni, nom, tel, estado, user;
 	
 	public Empleado() {
 		// TODO Auto-generated constructor stub
@@ -14,7 +14,7 @@ public class Empleado {
 		this.tel = tel;
 		this.estado = estado;
 		this.user = user;
-	}
+	} 
 	public int getId() {
 		return id;
 	}

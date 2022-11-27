@@ -99,8 +99,8 @@
                 </table>
             </div>
             <div class="card-footer">
-            	<input type="text" name="accion" value="Generar Venta" class="btn btn-outline-success">
-            	<input type="text" name="accion" value="Cancelar" class="btn btn-danger">
+            	<input type="submit" name="accion" value="Generar Venta" class="btn btn-outline-success">
+            	<input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
             </div>
           </div>
         </div>
