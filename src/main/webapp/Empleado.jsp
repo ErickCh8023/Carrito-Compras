@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -12,28 +13,29 @@
 	<div class="d-flex">
 		<div class="card col-sm-4">
 			<div class="card-body">
-				<form class="" action="">
+				<form action="Controlador?menu=Empleado" method="POST">
 					<div class="form-group">
 						<label>DNI</label>
-						<input type="text" name="txtDni" class="form-control">
+						<input type="text" value="${empleado.getDni() }" name="txtDni" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>NOMBRE</label>
-						<input type="text" name="txtNombre" class="form-control">
+						<input type="text" value="${empleado.getNom() }" name="txtNombre" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>TELEFONO</label>
-						<input type="text" name="txtTel" class="form-control">
+						<input type="text" value="${empleado.getTel() }" name="txtTel" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>ESTADO</label>
-						<input type="text" name="txtEstado" class="form-control">
+						<input type="text" value="${empleado.getEstado() }" name="txtEstado" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>USER</label>
-						<input type="text" name="txtUser" class="form-control">
+						<input type="text" value="${empleado.getUser() }" name="txtUser" class="form-control">
 					</div>
 					<input type="submit" name="accion" value="Agregar" class="btn btn-info">
+					<input type="submit" name="accion" value="Actualizar" class="btn btn-success">
 				</form>
 			</div>
 		</div>
@@ -52,20 +54,20 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="em" items="${empleados}">
-					<tr>
-						<td>${em.getId()}</td>
-						<td>${em.getDni()}</td>
-						<td>${em.getNom()}</td>
-						<td>${em.getTel()}</td>
-						<td>${em.getEstado()}</td>
-						<td>${em.getUser()}</td>
-						<td>
-							<a>Editar</a>
-							<a>Delete</a>
-						</td>
-					</tr>
-				</c:forEach>
+					<c:forEach  var="em2" items="${listado}">
+						<tr>
+		                	<td><c:out value="${em2.getId()}"/></td>
+		                    <td><c:out value="${em2.getDni()}"/></td>
+		                    <td><c:out value="${em2.getNom()}"/></td>
+		                    <td><c:out value="${em2.getTel()}"/></td>
+		                    <td><c:out value="${em2.getEstado()}"/></td>
+		                    <td><c:out value="${em2.getUser()}"/></td>
+		                    <td>
+		                    	<a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em2.getId()}">Editar</a>
+		                        <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${em2.getId()}">Delete</a>
+		                    </td>
+		                </tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
