@@ -15,10 +15,10 @@ public class Producto {
 	public Producto() {
 	}
 	
-	public int getIdProducto() {
+	public int getId() {
 		return idProducto;
 	}
-	public void setIdProducto(int idProducto) {
+	public void setId(int idProducto) {
 		this.idProducto = idProducto;
 	}
 	public int getStock() {
@@ -33,10 +33,10 @@ public class Producto {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	public String getNombres() {
+	public String getNombre() {
 		return nombres;
 	}
-	public void setNombres(String nombres) {
+	public void setNombre(String nombres) {
 		this.nombres = nombres;
 	}
 	public String getEstado() {
