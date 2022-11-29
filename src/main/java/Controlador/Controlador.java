@@ -137,7 +137,8 @@ public class Controlador extends HttpServlet {
 					request.setAttribute("c", c);
 					break;
 				default:
-					throw new AssertionError();
+					//throw new AssertionError();
+					break;
 				}
 	            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
 	        }
