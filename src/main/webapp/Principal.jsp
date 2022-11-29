@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,16 +20,16 @@
 		          <a style="margin-left: 10px" class="btn btn-outline-dark" href="#">Home</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?menu=Producto" target="myFrame">Producto</a> <%-- Target hace referencia al iframe --%>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=Producto&accion=Listar" target="myFrame">Producto</a> <%-- Target hace referencia al iframe --%>
 		         </li>
 		         <li class="nav-item">
 		          <a class="btn btn-outline-dark" href="Controlador?menu=Empleado&accion=Listar" target="myFrame">Empleado</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?menu=Cliente" target="myFrame">Clientes</a>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=Cliente&accion=Listar" target="myFrame">Clientes</a>
 		         </li>
 		         <li class="nav-item">
-		          <a class="btn btn-outline-dark" href="Controlador?menu=NuevaVenta" target="myFrame">Nueva Venta</a>
+		          <a class="btn btn-outline-dark" href="Controlador?menu=NuevaVenta&accion=default" target="myFrame">Nueva Venta</a>
 		         </li>
 		      </ul>
 						<div class="dropdown">

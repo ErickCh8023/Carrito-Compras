@@ -15,6 +15,25 @@ public class ClienteDAO {
 	ResultSet rs;
 	int r;
 	
+	public Cliente buscar(String dni) {
+		Cliente c = new Cliente();
+		String sql= "Select * from cliente where Dni="+dni;
+		try {
+			con=cn.Conexion();
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				c.setId(rs.getInt(1));
+				c.setDni(rs.getString(2));
+				c.setNombres(rs.getString(3));
+				c.setDireccion(rs.getString(4));
+				c.setEstado(rs.getString(5));
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return c;
+	}	
 	public List listar() {
 		String sql = "select * from cliente";
 		List<Cliente>lista = new ArrayList<>();
@@ -60,7 +79,7 @@ public class ClienteDAO {
 	
 	public Cliente listaId(int id) {
 		Cliente emp = new Cliente();
-		String sql = "select * from cliente where IdEmpleado="+id;
+		String sql = "select * from cliente where IdCliente="+id;
 		try {
 			con = cn.Conexion();
 			ps = con.prepareStatement(sql);
@@ -89,7 +108,7 @@ public class ClienteDAO {
 			ps.setString(2, emp.getNombres());
 			ps.setString(3, emp.getDireccion());
 			ps.setString(4, emp.getEstado());
-			ps.setInt(6, emp.getId());
+			ps.setInt(5, emp.getId());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -98,7 +117,7 @@ public class ClienteDAO {
 	}
 	
 	public void delete(int id) {
-		String sql = "delete from empleado where IdEmpleado="+id;
+		String sql = "delete from cliente where IdCliente="+id;
 		try {
 			con = cn.Conexion();
 			ps = con.prepareStatement(sql);
@@ -107,5 +126,4 @@ public class ClienteDAO {
 			System.out.println(e);
 		}
 	}
-}
 }

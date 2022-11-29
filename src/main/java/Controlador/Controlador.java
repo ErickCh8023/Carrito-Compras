@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Modelo.Cliente;
+import Modelo.ClienteDAO;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 
@@ -21,7 +23,10 @@ public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Empleado em = new Empleado();
 	EmpleadoDAO edao = new EmpleadoDAO();
+	Cliente c = new Cliente();
+	ClienteDAO cdao = new ClienteDAO();
 	int ide;
+	int idc;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,7 +58,6 @@ public class Controlador extends HttpServlet {
 		String accion = request.getParameter("accion");
 		
 		
-		try {
 			if(menu.equals("Principal")) {
 				request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			}
@@ -120,17 +124,25 @@ public class Controlador extends HttpServlet {
 			}
 			
 			if(menu.equals("Cliente")) {
+				
 				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 			}
-			
-			if(menu.equals("NuevaVenta")) {
-				request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+			if (menu.equalsIgnoreCase("NuevaVenta")) {
+				switch (accion) {
+				case "BuscarCliente":
+					System.out.println("entre dios mio");
+					String dni = request.getParameter("codigocliente");
+					c.setDni(dni);
+					c = cdao.buscar(dni);
+					request.setAttribute("c", c);
+					break;
+				default:
+					throw new AssertionError();
+				}
+	            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+	        }
+
+	    }
 		
 		
 	}
-
-}
