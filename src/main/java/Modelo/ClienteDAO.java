@@ -30,7 +30,7 @@ public class ClienteDAO {
 				c.setEstado(rs.getString(5));
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("Error al buscar cliente "+e.getMessage());
 		}
 		return c;
 	}	
@@ -53,7 +53,7 @@ public class ClienteDAO {
 			}
 			
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("Error al listar cliente "+e.getMessage());
 		}
 		for (int i = 0; i < lista.size(); i++) {
 			System.out.println(lista.get(i).getId());
@@ -72,7 +72,7 @@ public class ClienteDAO {
 			ps.setString(4, emp.getEstado());
 			ps.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("Error al registrar cliente "+e.getMessage());
 		}
 		return r;
 	}

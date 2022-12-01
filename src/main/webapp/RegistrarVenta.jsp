@@ -70,7 +70,7 @@
             <div class="card-body">
                 <label>Nro: </label>
                 <div class="col-sm-6">
-                    <input type="text" name="NroSerie" class="from-control col-sm-12">
+                    <input type="text" name="NroSerie" value="${nserie}"class="from-control col-sm-12">
                 </div>
                 <table class="table table-hover">
 	                <thead>
@@ -102,14 +102,14 @@
 	                </tbody>
                 </table>
             </div>
-            <div calss="card-footer d-flex">
+            <div class="card-footer d-flex">
             	<div class="col-sm-6">
             		<input type="submit" name="accion" value="Generar venta" class="btn btn-success" />
-            		<input type="submit" name="accion" value="Generar venta" class="btn btn-danger"/>
+            		<input type="submit" name="accion" value="Cancelar" class="btn btn-danger"/>
             	</div>
             </div>
             <div class="col-sm-3 ml-auto">
-            	<input type="text" name="txtTotal" value="${totalpagar}" class="form-control" />
+            	<input type="text" name="txtTotal" value="$/. ${totalpagar}" class="form-control" />
             </div>
           </div>
         </div>

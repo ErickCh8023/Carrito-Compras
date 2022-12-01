@@ -16,6 +16,8 @@ import Modelo.EmpleadoDAO;
 import Modelo.Producto;
 import Modelo.ProductoDAO;
 import Modelo.Venta;
+import Modelo.VentaDAO;
+import config.GenerarSerie;
 
 /**
  * Servlet implementation class Controlador
@@ -62,6 +64,9 @@ public class Controlador extends HttpServlet {
 		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}
+	
+	String numserie;
+	VentaDAO vdao = new VentaDAO();
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String menu = request.getParameter("menu");
@@ -148,10 +153,13 @@ public class Controlador extends HttpServlet {
 				case "BuscarProducto":
 					int id = Integer.parseInt(request.getParameter("codigoproducto"));
 					p = pdao.listarId(id);
+					request.setAttribute("c", c);
 					request.setAttribute("producto", p);
 					request.setAttribute("lista", lista);
+					request.setAttribute("totalpagar", totalPagar);
 					break;
 				case "Agregar":
+					request.setAttribute("c", c);
 					totalPagar = 0.0;
 					item = item+1;
 					cod =p.getId();
@@ -176,7 +184,17 @@ public class Controlador extends HttpServlet {
 					request.setAttribute("lista", lista);
 					break;
 				default:
-					//throw new AssertionError();
+					numserie = vdao.GenerarSerie();
+					if(numserie==null) {
+						numserie="00000001";
+						request.setAttribute("nserie", numserie);
+					}else {
+						int incrementar = Integer.parseInt(numserie);
+						GenerarSerie gs = new GenerarSerie();
+						numserie = gs.NumeroSerie(incrementar);
+						request.setAttribute("nserie", numserie);
+					}
+					request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
 				}
 	            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
 	        }
