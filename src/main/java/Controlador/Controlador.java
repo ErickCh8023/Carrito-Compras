@@ -20,6 +20,7 @@ import Modelo.Venta;
 /**
  * Servlet implementation class Controlador
  */
+//fredy se la come XDDD
 @WebServlet("/Controlador")
 public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
