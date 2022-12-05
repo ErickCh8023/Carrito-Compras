@@ -37,8 +37,10 @@ public class Controlador extends HttpServlet {
     Venta v = new Venta();
     List<Venta>lista = new ArrayList<>();
     int item, cod, cant;
-    String descipcion;
+    String descripcion;
     double precio, subtotal, totalPagar;
+    String numserie;
+	VentaDAO vdao = new VentaDAO();
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -64,9 +66,6 @@ public class Controlador extends HttpServlet {
 		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}
-	
-	String numserie;
-	VentaDAO vdao = new VentaDAO();
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String menu = request.getParameter("menu");
@@ -149,6 +148,7 @@ public class Controlador extends HttpServlet {
 					c.setDni(dni);
 					c = cdao.buscar(dni);
 					request.setAttribute("c", c);
+					request.setAttribute("nserie", numserie);
 					break;
 				case "BuscarProducto":
 					int id = Integer.parseInt(request.getParameter("codigoproducto"));
@@ -157,20 +157,22 @@ public class Controlador extends HttpServlet {
 					request.setAttribute("producto", p);
 					request.setAttribute("lista", lista);
 					request.setAttribute("totalpagar", totalPagar);
+					request.setAttribute("nserie", numserie);
 					break;
 				case "Agregar":
 					request.setAttribute("c", c);
+					request.setAttribute("nserie", numserie);
 					totalPagar = 0.0;
 					item = item+1;
 					cod =p.getId();
-					descipcion = request.getParameter("nomproducto");
+					descripcion = request.getParameter("nomproducto");
 					precio = Double.parseDouble(request.getParameter("precio"));
 					cant = Integer.parseInt(request.getParameter("cantidad"));
 					subtotal = precio*cant;
 					v = new Venta();
 					v.setItem(item);
-					v.setId(cod);
-					v.setDescripcionP(descipcion);
+					v.setIdProducto(cod);
+					v.setDescripcionP(descripcion);
 					v.setPrecio(precio);
 					v.setCantidad(cant);
 					v.setSubtotal(subtotal);
@@ -183,12 +185,47 @@ public class Controlador extends HttpServlet {
 					request.setAttribute("totalpagar", totalPagar);
 					request.setAttribute("lista", lista);
 					break;
+				case "GenerarVenta":
+					//Actualizar Stock
+					for(int i=0;i<lista.size();i++) {
+						Producto pd=new Producto();
+						int cantd=lista.get(i).getCantidad();
+						int idproducto=lista.get(i).getIdProducto();
+						ProductoDAO aO=new ProductoDAO();
+						pd=aO.buscar(idproducto);
+						int stack=pd.getStock()-cantd;
+						aO.actualizarStock(idproducto, stack);
+					}
+					//Generar venta
+					v.setIdCliente(c.getId());
+					v.setIdEmpleado(1);
+					v.setNumSerie(numserie);
+					v.setFecha("2022-12-04");
+					v.setMonto(totalPagar);
+					v.setEstado("1");
+					vdao.GuardarVenta(v);
+					//generar detalleventa
+					int idv=Integer.parseInt(vdao.IdVentas());
+					for(int i=0;i<lista.size();i++) {
+						v = new Venta();
+						v.setId(idv);
+						v.setIdProducto(lista.get(i).getIdProducto());
+						v.setCantidad(lista.get(i).getCantidad());
+						v.setPrecio(lista.get(i).getPrecio());
+						vdao.GuardarD_Ventas(v);
+					}
+					break;
 				default:
+					v = new Venta();
+				    lista = new ArrayList<>();
+				    item=0;
+				    totalPagar=0.0;
+				    
 					numserie = vdao.GenerarSerie();
 					if(numserie==null) {
 						numserie="00000001";
 						request.setAttribute("nserie", numserie);
-					}else {
+					}else{
 						int incrementar = Integer.parseInt(numserie);
 						GenerarSerie gs = new GenerarSerie();
 						numserie = gs.NumeroSerie(incrementar);

@@ -10,11 +10,18 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <title>Document</title>
+    <style>
+        @media print{
+            .nomostrar, .btn, .accion{
+                display: none;
+            }
+        }
+    </style>
 
 </head>
 <body>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 nomostrar">
           <div class="card">
             <div class="card-body">
                 <form action="Controlador?menu=NuevaVenta" method="POST">
@@ -81,7 +88,7 @@
 	                            <th>Precio</th>
 	                        <th>Cantidad</th>
 	                         <th>SubTotal</th>
-	                        <th>Acciones</th>
+	                        <th class="accion">Acciones</th>
 	                    </tr>
 	                </thead>
 	                <tbody>
@@ -104,7 +111,7 @@
             </div>
             <div class="card-footer d-flex">
             	<div class="col-sm-6">
-            		<input type="submit" name="accion" value="Generar venta" class="btn btn-success" />
+            	    <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success">GenerarVenta</a>
             		<input type="submit" name="accion" value="Cancelar" class="btn btn-danger"/>
             	</div>
             </div>

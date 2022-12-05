@@ -37,7 +37,7 @@ public class ProductoDAO {
     }
     
     public int actualizarStock(int id,int stock){
-        String sql="update producto set Stock=? where IdProducto="+id;
+        String sql="update producto set Stock=? where IdProducto=?";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
@@ -73,7 +73,7 @@ public class ProductoDAO {
     
     public List listar() {
         String sql = "SELECT * FROM producto";
-        List<Producto> Lista = new ArrayList<>();
+        List<Producto> lista = new ArrayList<>();
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -85,12 +85,12 @@ public class ProductoDAO {
                 prod.setPrecio(Double.parseDouble(rs.getString(3)));
                 prod.setStock(rs.getInt(4));
                 prod.setEstado(rs.getString(5));
-                Lista.add(prod);
+                lista.add(prod);
             }
         } catch (Exception e) {
             System.out.println("Error metodo listar en clase ProductoDAO : " + e.getMessage());
         }
-        return Lista;
+        return lista;
     }
 
     public int agregar(Producto prod) {

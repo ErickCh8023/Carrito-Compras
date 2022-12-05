@@ -31,7 +31,7 @@ public class GenerarSerie {
 			num="0000000"+this.dato;
 		}
 		
-		return num;
+		return this.num;
 	}
 
 }
