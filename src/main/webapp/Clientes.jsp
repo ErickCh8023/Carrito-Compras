@@ -14,19 +14,19 @@
 				<form action="Controlador?menu=Cliente" method="POST">
 					<div class="form-group">
 						<label>DNI</label>
-						<input type="text" value="${cli.getDni() }" name="txtDni" class="form-control">
+						<input type="text" value="${cli.getDni() }" name="txtDni" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>NOMBRE</label>
-						<input type="text" value="${cli.getNombres() }" name="txtNombre" class="form-control">
+						<input type="text" value="${cli.getNombres() }" name="txtNombre" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>DIRECCION</label>
-						<input type="text" value="${cli.getDireccion() }" name="txtDir" class="form-control">
+						<input type="text" value="${cli.getDireccion() }" name="txtDir" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>ESTADO</label>
-						<input type="text" value="${cli.getEstado() }" name="txtEstado" class="form-control">
+						<input type="text" value="${cli.getEstado() }" name="txtEstado" class="form-control" required="">
 					</div>
 					<input type="submit" name="accion" value="Agregar" class="btn btn-info">
 					<input type="submit" name="accion" value="Actualizar" class="btn btn-success">

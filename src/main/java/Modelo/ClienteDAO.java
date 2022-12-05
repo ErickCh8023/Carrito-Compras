@@ -55,9 +55,6 @@ public class ClienteDAO {
 		} catch (Exception e) {
 			System.out.println("Error al listar cliente "+e.getMessage());
 		}
-		for (int i = 0; i < lista.size(); i++) {
-			System.out.println(lista.get(i).getId());
-		}
 		return lista;
 	}
 	
@@ -100,7 +97,7 @@ public class ClienteDAO {
 	}
 	
 	public int actualizar(Cliente emp) {
-		String sql = "update cliente set Dni=?, Nombre=?, Direccion=?, Estado=? where IdCliente=?";
+		String sql = "update cliente set Dni=?, Nombres=?, Direccion=?, Estado=? where IdCliente=?";
 		try {
 			con = cn.Conexion();
 			ps = con.prepareStatement(sql);

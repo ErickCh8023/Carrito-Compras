@@ -16,23 +16,23 @@
 				<form action="Controlador?menu=Empleado" method="POST">
 					<div class="form-group">
 						<label>DNI</label>
-						<input type="text" value="${empleado.getDni() }" name="txtDni" class="form-control">
+						<input type="text" value="${empleado.getDni() }" name="txtDni" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>NOMBRE</label>
-						<input type="text" value="${empleado.getNom() }" name="txtNombre" class="form-control">
+						<input type="text" value="${empleado.getNom() }" name="txtNombre" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>TELEFONO</label>
-						<input type="text" value="${empleado.getTel() }" name="txtTel" class="form-control">
+						<input type="text" value="${empleado.getTel() }" name="txtTel" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>ESTADO</label>
-						<input type="text" value="${empleado.getEstado() }" name="txtEstado" class="form-control">
+						<input type="text" value="${empleado.getEstado() }" name="txtEstado" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label>USER</label>
-						<input type="text" value="${empleado.getUser() }" name="txtUser" class="form-control">
+						<input type="text" value="${empleado.getUser() }" name="txtUser" class="form-control" required="">
 					</div>
 					<input type="submit" name="accion" value="Agregar" class="btn btn-info">
 					<input type="submit" name="accion" value="Actualizar" class="btn btn-success">

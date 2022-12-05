@@ -138,7 +138,54 @@ public class Controlador extends HttpServlet {
 			}
 			
 			if(menu.equals("Cliente")) {
+				switch (accion) {
+				case "Listar":
+					List<Cliente> lista = cdao.listar();
+					request.setAttribute("listado", lista);
+					break;
+					
+				case "Agregar":
+					String dni = request.getParameter("txtDni");
+					String nom = request.getParameter("txtNombre");
+					String dir = request.getParameter("txtDir");
+					String est = request.getParameter("txtEstado");
+					c.setDni(dni);
+					c.setNombres(nom);
+					c.setDireccion(dir);
+					c.setEstado(est);
+					cdao.agregar(c);
+					request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+					break;
+					
+				case "Editar":
+					idc = Integer.parseInt(request.getParameter("id"));
+                    Cliente ca = cdao.listaId(idc);
+                    request.setAttribute("cli", ca);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                    break;
+				case "Actualizar":
+					String dni1 = request.getParameter("txtDni");
+					String nom1 = request.getParameter("txtNombre");
+					String dir1 = request.getParameter("txtDir");
+					String est1 = request.getParameter("txtEstado");
+					c.setDni(dni1);
+					c.setNombres(nom1);
+					c.setDireccion(dir1);
+					c.setEstado(est1);
+					c.setId(idc);
+					cdao.actualizar(c);
+					request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+					break;
 				
+				case "Delete":
+					idc = Integer.parseInt(request.getParameter("id"));
+					cdao.delete(idc);
+					request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+					break;
+				
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + accion);
+				}
 				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 			}
 			if (menu.equalsIgnoreCase("NuevaVenta")) {
