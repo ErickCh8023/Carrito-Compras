@@ -110,7 +110,7 @@ public class EmpleadoDAO {
 	}
 	
 	public int actualizar(Empleado emp) {
-		String sql = "update empleado set Dni=?, Nombre=?, Telefono=?, Estado=?, User=? where IdEmpleado=?";
+		String sql = "update empleado set Dni=?, Nombres=?, Telefono=?, Estado=?, User=? where IdEmpleado=?";
 		try {
 			con = cn.Conexion();
 			ps = con.prepareStatement(sql);
