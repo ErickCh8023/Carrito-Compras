@@ -28,12 +28,14 @@ public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Empleado em = new Empleado();
 	EmpleadoDAO edao = new EmpleadoDAO();
+	
 	Cliente c = new Cliente();
 	ClienteDAO cdao = new ClienteDAO();
+	
 	Producto p = new Producto();
 	ProductoDAO pdao = new ProductoDAO();
-	int ide;
-	int idc;
+	
+	int ide, idc, idp;
     Venta v = new Venta();
     List<Venta>lista = new ArrayList<>();
     int item, cod, cant;
@@ -75,11 +77,59 @@ public class Controlador extends HttpServlet {
 			if(menu.equals("Principal")) {
 				request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			}
-			
+			//PRODUCTO
 			if(menu.equals("Producto")) {
+				switch (accion) {
+				case "Listar":
+					List<Producto> lista = pdao.listar();
+					request.setAttribute("listado", lista);
+					break;
+					
+				case "Agregar":
+					String nom = request.getParameter("txtNombre");
+					String pre = request.getParameter("txtPrecio");
+					String stock = request.getParameter("txtStock");
+					String est = request.getParameter("txtEstado");
+					p.setNombre(nom);
+					p.setPrecio(Double.parseDouble(pre));
+					p.setStock(Integer.parseInt(stock));
+					p.setEstado(est);
+					pdao.agregar(p);
+					request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+					break;
+					
+				case "Editar":
+					idp = Integer.parseInt(request.getParameter("id"));
+                    Producto ca = pdao.listarId(idp);
+                    request.setAttribute("pro", ca);
+                    request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+                    break;
+				case "Actualizar":
+					String nom1 = request.getParameter("txtNombre");
+					String pre1 = request.getParameter("txtPrecio");
+					String stock1 = request.getParameter("txtStock");
+					String est1 = request.getParameter("txtEstado");
+					p.setNombre(nom1);
+					p.setPrecio(Double.parseDouble(pre1));
+					p.setStock(Integer.parseInt(stock1));
+					p.setEstado(est1);
+					p.setId(idp);
+					pdao.actualizar(p);
+					request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+					break;
+				
+				case "Delete":
+					idp = Integer.parseInt(request.getParameter("id"));
+					pdao.delete(idp);
+					request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+					break;
+				
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + accion);
+				}
 				request.getRequestDispatcher("Producto.jsp").forward(request, response);
 			}
-			
+			//EMPLEADO
 			if(menu.equals("Empleado")) {
 				switch (accion) {
 				case "Listar":
@@ -136,7 +186,7 @@ public class Controlador extends HttpServlet {
 				}
 				request.getRequestDispatcher("Empleado.jsp").forward(request, response);
 			}
-			
+		// Cliente
 			if(menu.equals("Cliente")) {
 				switch (accion) {
 				case "Listar":

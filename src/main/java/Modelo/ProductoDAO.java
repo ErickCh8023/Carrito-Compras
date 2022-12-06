@@ -3,6 +3,7 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,19 +95,19 @@ public class ProductoDAO {
     }
 
     public int agregar(Producto prod) {
-        String sql = "INSERT INTO producto values(Nombres, Precio, Stock, Estado)values(?,?,?,?)";
-        try {
-            con = cn.Conexion();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, prod.getNombre());
-            ps.setDouble(2, prod.getPrecio());
-            ps.setInt(3, prod.getStock());
-            ps.setString(4, prod.getEstado());
-            ps.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Error en metodo agregar de la clase ProductoDAO : " + e.getMessage());
-        }
-        return r;
+    	 String sql = "insert into producto(Nombres, Precio, Stock, Estado)values(?,?,?,?)";
+         try {
+             con = cn.Conexion();
+             ps = con.prepareStatement(sql);
+             ps.setString(1, prod.getNombre());
+             ps.setDouble(2, prod.getPrecio());
+             ps.setInt(3, prod.getStock());
+             ps.setString(4, prod.getEstado());
+             ps.executeUpdate();
+         } catch (SQLException e) {
+             System.out.println("Error en metodo agregar de la clase ProductoDAO : " + e.getMessage());
+         }
+         return r;
     }
 
     public Producto listarId(int id) {
