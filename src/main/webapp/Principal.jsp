@@ -40,7 +40,7 @@
 						    <a class="dropdown-item" href="#"> <img  src="img/user.png" alt="50px" width="50px"></a>
 						    <li><a class="dropdown-item" href="#">${usuario.getUser()}</a></li>
 						    <li><a class="dropdown-item" href="#">usuario@gmail.com</a></li>
-							<form action="validar" method="POST">
+							<form action="Validar" method="POST">
 									<button  name="accion" value="Salir" class="dropdown-item" href="#">Salir</button>
 							</form>
 						  </ul>
